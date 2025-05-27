@@ -30,11 +30,11 @@ const limiter = rateLimit({
 })
 app.use(limiter)
 
-// CORS configuration
+// Temporary CORS fix for testing
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
-    credentials: true,
+    origin: "*", // Allow all origins for testing
+    credentials: false,
   }),
 )
 
