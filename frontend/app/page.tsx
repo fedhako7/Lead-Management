@@ -128,10 +128,6 @@ export default async function HomePage() {
                 <h2 className="text-2xl font-bold">Add New Lead</h2>
               </div>
               <p className="text-blue-100 mb-6">Capture new potential customers and start building relationships</p>
-              <p className="mb-6 text-blue-50">
-                Quickly add new leads to your pipeline with our streamlined form. Track their progress from initial
-                contact to closed deals.
-              </p>
               <Link href="/leads/new">
                 <button className="w-full bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors">
                   Create New Lead
@@ -153,8 +149,6 @@ export default async function HomePage() {
               </div>
               <p className="text-purple-100 mb-6">Monitor and manage your entire lead database</p>
               <p className="mb-6 text-purple-50">
-                Access your complete lead database with advanced filtering and sorting options. Track status changes and
-                manage your sales pipeline effectively.
               </p>
               <Link href="/leads">
                 <button className="w-full bg-white text-purple-600 font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors">
