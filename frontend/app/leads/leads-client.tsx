@@ -338,7 +338,7 @@ export default function LeadsClient() {
           <div className="p-6 border-b border-gray-200">
             <div className="flex justify-between items-center">
               <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                All Leads ({leadsData?.total || 0})
+                {leadsData ? `${leadsData.leads.length} of ${leadsData.total}` : "0 of 0"} Leads
                 {searching && <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>}
               </h2>
               {leadsData && leadsData.totalPages > 1 && (
