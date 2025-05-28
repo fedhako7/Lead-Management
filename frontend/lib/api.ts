@@ -101,24 +101,7 @@ class ApiClient {
       body: JSON.stringify(lead),
     })
   }
-
-  async getLeadById(id: string): Promise<ApiResponse<Lead>> {
-    return this.request<Lead>(`/leads/${id}`)
-  }
-
-  async updateLead(id: string, lead: Partial<Lead>): Promise<ApiResponse<Lead>> {
-    return this.request<Lead>(`/leads/${id}`, {
-      method: "PUT",
-      body: JSON.stringify(lead),
-    })
-  }
-
-  async deleteLead(id: string): Promise<ApiResponse> {
-    return this.request(`/leads/${id}`, {
-      method: "DELETE",
-    })
-  }
-
+  
   async getLeadStats(): Promise<
     ApiResponse<{
       total: number

@@ -11,29 +11,58 @@ import { errorHandler, notFound } from "./middleware/errorHandler";
 dotenv.config();
 
 const app = express();
-const PORT = 10000
+const PORT = 10000;
 app.set("trust proxy", 1);
 
 // Connect to MongoDB
 connectDB();
 
-// Handle preflight OPTIONS requests for all routes
-app.options("*", cors());
-// CORS configuration (allow all origins, methods, and headers)
-app.use(cors());
+// CORS configuration
+const allowedOrigins = [
+  process.env.FRONTEND_URL || "http://localhost:3000",
+  // Add other allowed origins as needed
+];
 
+const corsOptions: cors.CorsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true, // If you need to send cookies or auth headers
+  maxAge: 86400, // Cache preflight requests for 24 hours
+};
 
-// Security middleware (disable CSP to avoid conflicts)
+// Apply CORS middleware
+app.use(cors(corsOptions));
+// Handle preflight OPTIONS requests
+app.options("*", cors(corsOptions));
+
+// Security middleware
 app.use(
   helmet({
-    contentSecurityPolicy: false,
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        scriptSrc: ["'self'"],
+        connectSrc: ["'self'", ...allowedOrigins],
+      },
+    },
   })
 );
 
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
+  max: 100,
   message: {
     success: false,
     error: "Too many requests from this IP, please try again later",
