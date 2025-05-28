@@ -10,6 +10,9 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "LeadFlow - Lead Management System",
   description: "Streamline your sales process with comprehensive lead tracking and management",
+  icons: {
+    icon: "/favicon.svg",
+  },
 }
 
 export default function RootLayout({
