@@ -51,13 +51,13 @@ A modern, full-stack lead management application built with Next.js, TypeScript,
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/fedhako7/leadflow-management.git
-cd leadflow-management
+git clone https://github.com/fedhako7/lead-management.git
+cd lead-management
 ```
 
 ### 2. Setup Frontend
 ```bash
-# Move to leadflow-management/frontend
+# Move to lead-management/frontend
 cd frontend
 # Install dependencies
 npm install
@@ -71,7 +71,7 @@ NEXT_PUBLIC_API_URL=http://localhost:5000/api
 
 ### 3. Setup Backend
 ```bash
-# Move to leadflow-management/backend
+# Move to lead-management/backend
 cd backend
 
 # Install dependencies
@@ -91,7 +91,7 @@ FRONTEND_URL=http://localhost:3000
 
 **Terminal 1 - Backend:**
 ```bash
-# Move to leadflow-management/backend
+# Move to lead-management/backend
 
 cd backend
 npm run dev
@@ -99,7 +99,7 @@ npm run dev
 
 **Terminal 2 - Frontend:**
 ```bash
-# Move to leadflow-management/frontend
+# Move to lead-management/frontend
 
 npm run dev
 ```
@@ -112,7 +112,7 @@ npm run dev
 ## 📁 Project Structure
 
 ```
-leadflow-management/
+lead-management/
 ├── app/                    # Next.js app directory
 │   ├── leads/             # Lead management pages
 │   ├── globals.css        # Global styles
@@ -183,17 +183,12 @@ GET /api/leads?page=1&limit=10&search=john&status=New&sortBy=createdAt&sortOrder
 
 ## 🚀 Deployment
 
-### Frontend (Vercel)
-1. Push code to GitHub
-2. Connect repository to Vercel
-3. Add environment variables
-4. Deploy automatically
+### 🔹 Frontend (Vercel)  
+🌐 [Lead Management Frontend](https://lead-management-frontend-fedesas-projects.vercel.app/)
 
-### Backend ()
-1. Create new project
-2. Connect GitHub repository
-3. Add environment variables
-4. Deploy backend service
+### 🔹 Backend (Render)  
+🌐 [Lead Management Backend](https://lead-management-backend-at71.onrender.com/)
+
 
 ### Database (MongoDB Atlas)
 1. Create cluster
