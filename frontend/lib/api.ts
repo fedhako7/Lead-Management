@@ -39,7 +39,6 @@ class ApiClient {
   private async request<T>(endpoint: string, options: RequestInit = {}): Promise<ApiResponse<T>> {
     const url = `${API_BASE_URL}${endpoint}`
 
-    console.log("🚀 API Request URL:", url)
 
     const config: RequestInit = {
       method: options.method || "GET",
@@ -50,19 +49,10 @@ class ApiClient {
       ...options,
     }
 
-    console.log("🔧 Request Config:", config)
-
     try {
-      console.log("📡 Starting fetch...")
-
       const response = await fetch(url, config)
 
-      console.log("✅ Fetch completed, status:", response.status)
-      console.log("✅ Response OK:", response.ok)
-
       const data = await response.json()
-      console.log("📦 Response Data:", data)
-
       if (!response.ok) {
         throw new Error(data.error || `HTTP ${response.status}`)
       }
@@ -70,13 +60,17 @@ class ApiClient {
       return data
     } catch (error) {
       console.error("❌ Fetch Error Details:")
-      console.error("- Error Type:", error.constructor.name)
-      console.error("- Error Message:", error.message)
-      console.error("- Full Error:", error)
-      console.error("- URL:", url)
+      // Type guard to check if error is an instance of Error
+      if (error instanceof Error) {
+        console.error("- Error Type:", error)
 
-      // Re-throw with more context
-      throw new Error(`API Request Failed: ${error.message}`)
+        // Re-throw with more context
+        throw new Error(`API Request Failed: ${error.message}`)
+      } else {
+        // Handle non-Error cases (e.g., string, number, etc.)
+        console.error("- Error Type: Unknown")
+        throw new Error(`API Request Failed: Unknown error`)
+      }
     }
   }
 
@@ -101,7 +95,7 @@ class ApiClient {
       body: JSON.stringify(lead),
     })
   }
-  
+
   async getLeadStats(): Promise<
     ApiResponse<{
       total: number
