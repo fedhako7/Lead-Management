@@ -2,8 +2,6 @@
 
 A modern, full-stack lead management application built with Next.js, TypeScript, Express, and MongoDB. Streamline your sales process with comprehensive lead tracking, filtering, and analytics.
 
-![LeadFlow Dashboard](https://via.placeholder.com/800x400/4F46E5/FFFFFF?text=LeadFlow+Dashboard)
-
 ## ✨ Features
 
 ### 🎯 Core Functionality
